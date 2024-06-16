@@ -1,0 +1,223 @@
+<!doctype html><html><head></head><body><!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Практическая работа № 2 (Массивы. Функции)</title>
+	<style>
+		body {
+			font-family: MS Serif, New York, serif;
+			background-color: #2F4F4F;
+			margin: 20px;
+      color: white;
+		}
+
+		.container {
+			max-width: 800px;
+			margin: auto;
+			padding: 20px;
+			background-color: #fff;
+			border-radius: 10px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+		}
+
+		h1 {
+			text-align: center;
+			color: #2F4F4F;
+		}
+
+		.task {
+			margin-bottom: 20px;
+			padding: 15px;
+			background-color: #2F4F4F;
+			border: 1px solid #b3e0ff;
+			border-radius: 8px;
+		}
+
+		.result {
+			margin-top: 10px;
+			padding: 10px;
+			background-color: #2F4F4F;
+			border: 1px solid #b3ffb3;
+			border-radius: 8px;
+		}
+
+		.task:hover .result {
+			display: block;
+		}
+
+		.hidden {
+			display: none;
+		}
+
+		.show-on-hover:hover .hidden {
+			display: block;
+		}
+
+		.btn {
+			background-color: #FF7F50;
+			color: white;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+
+		.btn:hover {
+			background-color: #315f7b;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<h1>Практическая работа № 2 (Массивы. Функции)</h1>
+
+		<div class="task">
+			<h2>1. Создать массив 3 разными способами</h2>
+			<button class="btn" onclick="createArrays()">Выполнить</button>
+			<div class="result hidden" id="result1"></div>
+		</div>
+
+		<div class="task">
+			<h2>2. Выведите на экран 5 член вашего массива затем измените его значение</h2>
+			<button class="btn" onclick="displayAndChangeFifthElement()">Выполнить</button>
+			<div class="result hidden" id="result2"></div>
+		</div>
+
+		<div class="task show-on-hover">
+			<h2>3. Узнайте длину вашего массива и выведите ее значение при наведении на любой элемент</h2>
+			<div class="result hidden" id="result3"></div>
+		</div>
+
+		<div class="task">
+			<h2>4. Выведите все элементы массива, используя цикл for</h2>
+			<button class="btn" onclick="displayAllElements()">Выполнить</button>
+			<div class="result hidden" id="result4"></div>
+		</div>
+
+		<div class="task">
+			<h2>5. Создайте 2 массива. Объедините их в один и выведите на экран полученный массив</h2>
+			<button class="btn" onclick="combineArrays()">Выполнить</button>
+			<div class="result hidden" id="result5"></div>
+		</div>
+
+		<div class="task">
+			<h2>6. Удалите последний член получившегося массива и выведите это значение на экран</h2>
+			<button class="btn" onclick="removeLastElement()">Выполнить</button>
+			<div class="result hidden" id="result6"></div>
+		</div>
+
+		<div class="task">
+			<h2>7. Удалите последний член получившегося массива и выведите это значение на экран</h2>
+			<button class="btn" onclick="removeLastElementAgain()">Выполнить</button>
+			<div class="result hidden" id="result7"></div>
+		</div>
+
+		<div class="task">
+			<h2>8. Добавьте новый элемент в начало вашего объединенного массива</h2>
+			<button class="btn" onclick="addElementToFront()">Выполнить</button>
+			<div class="result hidden" id="result8"></div>
+		</div>
+
+		<div class="task">
+			<h2>9. Получите сегодняшнюю дату и выведите ее на экран</h2>
+			<button class="btn" onclick="displayCurrentDate()">Выполнить</button>
+			<div class="result hidden" id="result9"></div>
+		</div>
+
+		<div class="task">
+			<h2>10. Выведите сегодняшнюю дату в формате 11 ноября 2020 года</h2>
+			<button class="btn" onclick="displayFormattedDate()">Выполнить</button>
+			<div class="result hidden" id="result10"></div>
+		</div>
+
+		<div class="task">
+			<h2>11. Напишите функцию, подсчитывающую произведение двух случайных чисел в промежутке от нуля до 50</h2>
+			<button class="btn" onclick="multiplyRandomNumbers()">Выполнить</button>
+			<div class="result hidden" id="result11"></div>
+		</div>
+	</div>
+
+	<script>
+		let array1 = [];
+        let array2 = new Array(5);
+        let array3 = Array.of(1, 2, 3, 4, 5);
+        let combinedArray = [];
+
+        function createArrays() {
+            array1 = [1, 2, 3, 4, 5];
+            array2 = new Array(6, 7, 8, 9, 10);
+            array3 = Array.of(11, 12, 13, 14, 15);
+            document.getElementById('result1').innerText = 
+                `Array1: ${array1}\nArray2: ${array2}\nArray3: ${array3}`;
+            document.getElementById('result1').classList.remove('hidden');
+        }
+
+        function displayAndChangeFifthElement() {
+            let fifthElement = array1[4];
+            array1[4] = 100;
+            document.getElementById('result2').innerText = 
+                `5-й элемент: ${fifthElement}\nИзмененный массив: ${array1}`;
+            document.getElementById('result2').classList.remove('hidden');
+        }
+
+        function displayAllElements() {
+            let elements = '';
+            for(let i = 0; i < array1.length; i++) {
+                elements += array1[i] + ' ';
+            }
+            document.getElementById('result4').innerText = `Элементы массива: ${elements}`;
+            document.getElementById('result4').classList.remove('hidden');
+        }
+
+        function combineArrays() {
+            combinedArray = array1.concat(array2);
+            document.getElementById('result5').innerText = `Объединенный массив: ${combinedArray}`;
+            document.getElementById('result5').classList.remove('hidden');
+        }
+
+        function removeLastElement() {
+            let removedElement = combinedArray.pop();
+            document.getElementById('result6').innerText = `Удаленный элемент: ${removedElement}`;
+            document.getElementById('result6').classList.remove('hidden');
+        }
+
+        function removeLastElementAgain() {
+            let removedElement = combinedArray.pop();
+            document.getElementById('result7').innerText = `Удаленный элемент: ${removedElement}`;
+            document.getElementById('result7').classList.remove('hidden');
+        }
+
+        function addElementToFront() {
+            combinedArray.unshift('newElement');
+            document.getElementById('result8').innerText = `Массив с новым элементом: ${combinedArray}`;
+            document.getElementById('result8').classList.remove('hidden');
+        }
+
+        function displayCurrentDate() {
+            let today = new Date();
+            document.getElementById('result9').innerText = `Сегодняшняя дата: ${today}`;
+            document.getElementById('result9').classList.remove('hidden');
+        }
+
+        function displayFormattedDate() {
+            let today = new Date();
+            let options = { year: 'numeric', month: 'long', day: 'numeric' };
+            let formattedDate = today.toLocaleDateString('ru-RU', options);
+            document.getElementById('result10').innerText = `Форматированная дата: ${formattedDate}`;
+            document.getElementById('result10').classList.remove('hidden');
+        }
+
+        function multiplyRandomNumbers() {
+            let num1 = Math.floor(Math.random() * 51);
+            let num2 = Math.floor(Math.random() * 51);
+            let product = num1 * num2;
+            document.getElementById('result11').innerText = `Произведение ${num1} и ${num2} равно ${product}`;
+            document.getElementById('result11').classList.remove('hidden');
+        }
+	</script>
+</body>
+
+</html>
+</body><html>
